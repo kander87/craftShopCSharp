@@ -1,0 +1,44 @@
+
+@model MyViewModel
+
+<div>
+        @await Html.PartialAsync("_Nav")
+</div>   
+
+<br>
+
+<div class="main">
+        <div class ="display-4 text-dark text-center">Welcome @Context.Session.GetString("Username")</div>
+        <br><br><br>
+
+<div class="d-flex justify-content-between">
+        <div class="text-center border col-md-5 shadow mb-5 bg-white rounded register">
+                <h1 class="display-6 title p-2">Seller Stats:</h1>
+                @{if(@Model.Associations?.Count >= 1){
+                        <p>You have sold @Model.Associations.Sum(a=>a.Quantity) items!</p>
+                        
+                        double? sum = 0;
+                        foreach(Association Association in Model.Associations){
+                                sum += Association.Quantity * Association.Craft.Price;
+                        }
+                        <p>You have made $@sum so far!</p>
+                }else{
+                        <p> You haven't sold anything yet! LOSER!</p>
+                        <p>YA BROKE!</p>
+                }}
+        </div>
+<br><br>
+
+        <div class="text-center border col-md-5 shadow mb-5 bg-white rounded login">
+                <h1 class="display-6 title p-2">Buyer Stats:</h1>
+                <br>
+                @{if(@Model.User?.Associations.Count >= 1){
+                <p> You have bought @Model.User.Associations.Sum(a=>a.Quantity) items!</p> 
+                } else{
+                        <p>You haven't bought anything yet!</p> 
+                }
+                }
+
+        </div>
+</div>
+</div>

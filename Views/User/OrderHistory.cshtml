@@ -1,0 +1,68 @@
+@model MyViewModel
+
+<div>
+    @await Html.PartialAsync("_Nav")
+</div>   
+
+<br>
+
+<p class="display-4">Order History</p>
+<br>
+<div>
+    <table class="table table-striped w-75 mx-auto shadow p-3 mb-5 bg-white rounded">
+    <thead class="thead-dark">
+    <tr>
+    <tr><td colspan="5" class="display-6"><center>Your Sales</center></td></tr>
+        <th>Craft Ordered</th>
+        <th>Quantity</th>
+        <th>Buyer</th>
+        <th>Total</th>
+        <th>Order Date</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach(Association association in Model.Associations){
+            <tr>
+                <td>@association.Craft.Title</td>
+                <td>@association.Quantity</td>
+                <td>@association.User.Username</td>
+                <td>$@(@association.Craft.Price * @association.Quantity)</td>
+                <td>@association.CreatedAt</td>
+            </tr>
+        }
+    </tbody>
+    </table>
+</div>
+
+<br>
+
+<div>
+    <table class="table table-striped w-75 mx-auto shadow p-3 mb-5 bg-white rounded">
+    <thead class="thead-dark">
+    <tr><td colspan="5" class="display-6"><center>Your Orders</center></td></tr>
+    <tr>
+        <th>Craft Ordered</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Seller</th>
+        <th>Order Date</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    @foreach(Association association in Model.User.Associations){
+        if(association.UserId == Context.Session.GetInt32("UserId")){
+            <tr>
+                <td>@association.Craft.Title</td>
+                <td>@association.Quantity</td>
+                <td>$@(@association.Craft.Price * @association.Quantity)</td>
+                <td>@association.Craft.Creator.Username</td>
+                <td>@association.CreatedAt</td>
+            </tr>
+        }
+
+        }
+
+    </tbody>
+    </table>
+</div>

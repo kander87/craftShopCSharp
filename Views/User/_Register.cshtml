@@ -1,0 +1,44 @@
+
+@model User
+<br>
+        <div class="text-center border col-md-5 shadow mb-5 bg-white rounded register">
+            <h1 class="display-4 title">Registration</h1>
+            <div>
+            <form  asp-controller="user" asp-action="Create" class="p-2" method="post" >  
+                <div class="form-group row  p-2">
+                    <label asp-for="Username" class="col-sm-3 col-form-label">Username</label>
+                        <div class="col-sm-8">
+                            <input asp-for="Username" class="form-control" placeholder="Username">
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                </div>
+
+                <div class="form-group row  p-2">
+                    <label asp-for="Email" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-8">
+                            <input asp-for="Email" class="form-control" placeholder="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                </div>
+
+                <div class="form-group row p-2">
+                    <label asp-for="Password" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-8">
+                            <input type="password" asp-for="Password" class="form-control" placeholder="Password">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                </div>
+
+                <div class="form-group row p-2">
+                    <label asp-for="PasswordConfirm" class="col-sm-3 col-form-label">Confirm Password</label>
+                        <div class="col-sm-8">
+                            <input type="password" asp-for="PasswordConfirm" class="form-control" placeholder="Confirm Password">
+                            <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+                        </div>
+                </div>
+
+                    <button type="submit" class="btn register">Register</button>
+            </form>
+        </div></div>
+
+

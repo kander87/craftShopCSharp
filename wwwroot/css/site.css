@@ -1,0 +1,60 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+.mynav{
+  background-color: #6b4b5f;
+  color: white;
+}
+
+a:hover {
+  background-color: #bcccbf;
+  color:black;
+}
+.title{
+  background-color: #6b4b5f;
+  color: white;
+}
+
+.register{
+  background-color: #bcccbf;
+}
+
+.main{
+  background-color: #ffdccb;
+  height: 100vh;
+}
+.edit{
+  background-color: #bcccbf;
+  border-radius: 5px;
+  border-color: #bcccbf;
+  margin: 2px;
+}
+
+.delete{
+  background-color: #a5666b;
+  border-radius: 5px;
+  border-color: #a5666b;
+  margin: 2px;
+  color: white;
+}
+
+body{
+  background-color: #ffdccb;
+}

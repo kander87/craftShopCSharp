@@ -1,0 +1,19 @@
+
+@model Association
+
+<form  asp-controller="Craft" asp-action="Buy" asp-route-craftId="@ViewBag.craft.CraftId" class="p-3 shadow bg-white rounded text-center" method="post" >  
+        <p style="font-size: 1.5rem;">$@ViewBag.craft.Price</p>
+        <p style="font-size: 1.5rem; color:red;">Only @ViewBag.craft.Quantity in stock!</p>
+            <div class="form-group row  p-2">
+                <label >Quantity:</label>
+                    <div class="p-2">
+                        <select asp-for="@Model.Quantity">
+                            @for(int i = 1; i<= @ViewBag.craft.Quantity; i++){
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                        <span asp-validation-for="@Model.Quantity" asp-controller="Craft" ></span>
+                        <button class="edit m-2">Buy</button>
+                    </div>
+            </div>
+</form>

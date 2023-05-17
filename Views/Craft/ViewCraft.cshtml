@@ -1,0 +1,30 @@
+
+@{
+    ViewData["Title"] = "View Craft Page";
+}
+@* @model Wedding *@
+@model MyViewModel
+
+
+
+<div class="text-center">
+    @await Html.PartialAsync("_Nav")
+</div>
+<br>
+
+<div class="p-3 shadow bg-white rounded text-center">
+    <p class="display-6">@ViewBag.craft.Title</p>
+<div class="d-flex align-items-center p-3 shadow bg-white rounded mx-auto">
+    
+    <div class="mx-auto" style="width: 24rem; height: 24rem;">
+        <img src="@ViewBag.craft.Image" style="width: 22rem"> 
+    <p >@ViewBag.craft.Description</p>
+    </div>
+    
+    <div class="mx-auto">
+            @await Html.PartialAsync("_BuyCraft", Model.Association)
+    </div>
+</div>
+</div>
+
+

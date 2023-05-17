@@ -1,0 +1,105 @@
+
+@{
+    ViewData["Title"] = "View Crafts";
+}
+
+@* @model List<Wedding> *@
+@model MyViewModel
+<div class="main">
+    <div class="text-center">
+        @await Html.PartialAsync("_Nav")
+
+    <br>
+        <h1 class="display-6">Shop Crafts</h1>
+        <br>
+</div>
+<div class="d-flex flex-wrap justify-content-center">
+    @foreach(Craft craft in Model.AllCrafts){
+    <div class="card p-2 m-2" style="width: 12rem">
+        <div style="width: 12rem; height: 12rem;">
+            <img src="@craft.Image" style="width: 11rem"> 
+        </div>
+        @* <img src="@craft.Image" class="">  *@
+        <center>
+            <a asp-controller="Craft" asp-action="ViewCraft" asp-route-craftId="@craft.CraftId"><p><b>@craft.Title</b></p></a>
+        </center>
+        <p>By: @craft?.Creator?.Username</p>
+        <p>$@craft?.Price</p>
+        <p>Only @craft.Quantity in stock!</p>
+        @if(@Context.Session.GetInt32("UserId") == craft.UserId){
+            <div class="d-flex justify-content-center align-items-end">
+                <a href="/edit/@craft.CraftId"><button class="edit">Edit</button></a>        
+                <form asp-controller="Craft" asp-action="CraftDelete" asp-route-craftId="@craft.CraftId" method="post"><button class="delete">Delete</button></form> 
+            </div>
+        }
+
+    </div>
+}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <table class="table table-striped w-75 mx-auto shadow p-3 mb-5 bg-white rounded">
+    <thead class="thead-dark">
+    <tr>
+        <th>Wedding Of</th>
+        <th>Date</th>
+        <th>Guest Count</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+    @foreach(Wedding wedding in Model.AllWeddings)
+    {
+        <tr>
+            <td><a href="/wedding/@wedding.WeddingId" style="text-decoration=none"> @wedding.WedderOne & @wedding.WedderTwo</a></td>
+            <td>@wedding.Date.ToString("MMM dd, yyyy")</td>
+            <td>@wedding.Associations.Count()</td>
+            @if(@Context.Session.GetInt32("UserId") == wedding.UserId){
+                <td class="d-flex justify-content-center">
+                    <a href="/edit/@wedding.WeddingId"><button class="edit">Edit</button></a>        
+                    <form asp-controller="Wedding" asp-action="WedDelete" asp-route-weddingId="@wedding.WeddingId" method="post"><button class="delete">Delete</button></form> 
+                </td>
+            } else {
+                bool isRSVP = wedding.Associations.Any(assoc => assoc.UserId == @Context.Session.GetInt32("UserId"));
+                Association? RSVPId = wedding.Associations.SingleOrDefault(assoc => assoc.UserId == @Context.Session.GetInt32("UserId"));
+                if(isRSVP){
+                    <td><form asp-controller="Wedding" asp-action="RSVPRemove" asp-route-weddingId="@wedding.WeddingId" asp-route-associationId="@RSVPId.AssociationId" method="get"><button class="unRSVP">un-RSVP</button></form></td>
+                } else {
+                    <td><form asp-controller="Wedding" asp-action="RSVPAdd" asp-route-weddingId="@wedding.WeddingId"  method="get"><button class="RSVP">RSVP</button></form></td>
+                }                
+            }
+        </tr>
+    }
+    </tbody>
+</table> *@
+</div>
+
